@@ -10,7 +10,7 @@
 - GRASP
 - Testable code
 - Dependency injection
-- Dummy, stub, mock
+- Test doubles: dummy, stub, mock
 - TDD
 
 ## Description
@@ -25,13 +25,13 @@ Fan must be controlled appropriately and must speed up when the temperature is t
 
 The Controller require a termomether and a fan to work. Without them it does not work. It also needs a target temperature and a tolerance. When the temperature is in a range <targetTemperature - tolerance, targetTemperature + tolerance>, controller should keep the fan speed at 1000 rpm. When it is below targetTemperature - tolerance, the fan should be disabled. When it is above, the fan speed must must be adjusted by 1 rpm per each 0.001 degree. Max speed is 3000 rpm.
 
-Controller can have an LCD display, which displays current temperature, target temperature and a fan speed. Controller, however, can work without a display.
+Controller can have an LCD display, which displays current temperature, target temperature and a fan speed. It can also work without a display.
 
 ## Assignment
 
 ### Propose improvements for the existing code
 
-Write them on a flipchart
+Write them on a flipchart / notepad.
 
 ### Refactor the existing, tested code
 
@@ -47,14 +47,14 @@ Write them on a flipchart
         <li>overcomplicated implementation</li>
         <li>dead code</li>
         <li>use default, delete, override</li>
-        <li>pass shared_ptrs via const &</li>
-        <li>shared_ptr constructor -> make_shared</li>
+        <li>pass shared_ptrs via <code>const &</code></li>
+        <li><code>shared_ptr</code>'s constructor -> <code>std::make_shared</code></li>
     </ul></p>
     </details>
 
 ### Write a missing part in TDD mode
 
-Write an implementation of a Controller module using TDD in Catch2 framework in BDD style with Hippomocks as a mocking framework. Use good programming practices.
+Write an implementation of a Controller class in TDD using either Catch2 framework in BDD style with Hippomocks as a mocking framework or using GTest with GMock. Remember about good programming practices.
 
 #### Tips
 
