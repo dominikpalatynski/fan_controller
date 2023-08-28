@@ -18,7 +18,9 @@ FetchContent_MakeAvailable(googletest)
 project(FanController)
 
 add_compile_options(-Wall -Wextra -Wpedantic -g)
+
 include_directories(.)
+
 add_library(SlowThermometer-lib SlowThermometer/SlowThermometer.cpp)
 
 set(SRC_LIST
@@ -34,12 +36,19 @@ add_library(${PROJECT_NAME}-lib ${SRC_LIST})
 add_executable(${PROJECT_NAME} main.cpp)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib SlowThermometer-lib pthread)
 
+
 set(TEST_SRC_LIST
     tests/FanTests.cpp
     tests/ControllerTests.cpp
+    Fan.hpp
+    Fan.cpp
 )
 
 add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
 
+target_link_libraries(${PROJECT_NAME}-ut gtest_main)
+target_link_libraries(${PROJECT_NAME}-ut gmock_main)
+
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}-ut)
+enable_testing()
